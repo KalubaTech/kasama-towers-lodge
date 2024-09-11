@@ -26,7 +26,6 @@ class HomeCategoryContainer extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal:5,vertical: 5),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: Colors.black54.withOpacity(0.5),
           ),
           child: Column(
             children: [

@@ -100,8 +100,8 @@ class _PageAnchorState extends State<PageAnchor> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color(0xFF06435A),
-                    Color(0xFF0C729B),
+                    Karas.primary,
+                    Karas.primary.withOpacity(0.7),
                   ],
                   stops: [0.5, 1],
                 ),

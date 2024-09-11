@@ -23,7 +23,7 @@ class Dashboard extends StatelessWidget {
         title: Container(
           child: Row(
             children: [
-              Text('RoomReserve', style: GoogleFonts.agbalumo(fontSize: 18, color: Colors.white),)
+              Text('Kasama Towers Lodge', style: GoogleFonts.agbalumo(fontSize: 18, color: Colors.white),)
             ],
           ),
         ),
@@ -40,47 +40,6 @@ class Dashboard extends StatelessWidget {
         ),
         body: [
           SectionContainer(
-              padding: EdgeInsets.all(20),
-              child: Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(Icons.location_history_outlined, color: Karas.action,),
-                        SizedBox(width: 10,),
-                        Text('Nearby Lodges', style: GoogleFonts.agbalumo()),
-                        Spacer(),
-                        Text('View all', style: TextStyle(color: Karas.action, fontSize: 12),)
-                      ],
-                    ),
-                    SizedBox(height: 10,),
-                    Container(
-                      width: double.infinity,
-                      height: 120,
-                      child: ListView(
-                        clipBehavior: Clip.none,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          HomeCategoryContainer(),
-                          SizedBox(width: 10,),
-                          HomeCategoryContainer(),
-                          SizedBox(width: 10,),
-                          HomeCategoryContainer(),
-                          SizedBox(width: 10,),
-                          HomeCategoryContainer(),
-                          SizedBox(width: 10,),
-                          HomeCategoryContainer(),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              )
-          ),
-          SizedBox(height: 10,),
-          SectionContainer(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -91,7 +50,7 @@ class Dashboard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Suggested', style: GoogleFonts.agbalumo(fontSize: 16),),
+                        Text('ROOMS', style: GoogleFonts.agbalumo(fontSize: 16),),
                         Text('View all', style: TextStyle(color: Karas.action, fontSize: 12),)
                       ],
                     ),
