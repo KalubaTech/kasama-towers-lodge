@@ -8,6 +8,8 @@ import 'package:kasama_towers_lodge/views/discover/rooms.dart';
 import 'package:kasama_towers_lodge/views/profile/profile.dart';
 import 'package:kasama_towers_lodge/views/search/search.dart';
 
+import '../components/drawer_tile.dart';
+
 
 class PageAnchor extends StatefulWidget {
   PageAnchor({super.key});
@@ -127,7 +129,26 @@ class _PageAnchorState extends State<PageAnchor> {
               ),
             ),
             Expanded(
-              child: Container(),
+              child: Container(
+                child: Column(
+                  children: [
+                    DrawerTile(
+                      title: 'Rooms',
+                      icon: Icons.meeting_room_outlined,
+                      onclick: (){
+
+                      },
+                    ),
+                    DrawerTile(
+                      title: 'Reserved',
+                      icon: Icons.warehouse,
+                      onclick: (){
+
+                      },
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
