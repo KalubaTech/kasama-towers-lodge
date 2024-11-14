@@ -11,13 +11,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kasama_towers_lodge/components/home_category_container.dart';
 import 'package:kasama_towers_lodge/components/kalubtn.dart';
 import 'package:kasama_towers_lodge/components/kalutext.dart';
+import 'package:kasama_towers_lodge/models/room_model.dart';
 import 'package:kasama_towers_lodge/rooms/pending_payment.dart';
 import 'package:kasama_towers_lodge/utils/colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 
 class ViewRoom extends StatelessWidget {
- ViewRoom({super.key});
+  RoomModel room;
+ ViewRoom(this.room);
 
  PageController _controller = PageController();
  TextEditingController _phoneNumberController = TextEditingController();
@@ -61,7 +63,7 @@ class ViewRoom extends StatelessWidget {
               PageView(
                 controller: _controller,
                 children: [
-                  Image.asset('assets/lodge1.jpg', fit: BoxFit.cover,),
+                  Image.asset('assets/room.jpg', fit: BoxFit.cover,),
                   Image.asset('assets/lodge1.jpg', fit: BoxFit.cover,),
                 ],
               ),
@@ -80,6 +82,7 @@ class ViewRoom extends StatelessWidget {
                             verticalOffset: 8
                           ),  // your preferred effect
                           onDotClicked: (index){
+
                           }
                       ),
                     ),
@@ -95,18 +98,11 @@ class ViewRoom extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Room 20 West Side', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
-                Row(
-                  children: [
-                    Icon(Icons.star, color: Colors.orange,), 
-                    SizedBox(width: 10,),
-                    Text('4.9 (116 reviews)', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500))
-                  ],
-                ),
+                Text('${room.name}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
                 SizedBox(height: 16,),
                 Row(
                   children: [
-                    Text('K250', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),),
+                    Text('K${room.price}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),),
                     Text('  per night', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w200),),
                   ],
                 ),
@@ -121,7 +117,7 @@ class ViewRoom extends StatelessWidget {
                   inactiveTextColorList: [Karas.primary],
                   padding: EdgeInsets.symmetric(horizontal: 4, vertical: 0),
                   widgetSpacing: 2,
-                  listOfChipNames: ['Wi-fi',"65' HDTV", 'Hair Dryer','Washing machine','Dishwasher', 'Air conditioner'],
+                  listOfChipNames: room.amenities.map((e)=>'$e').toList(),
                   listOfChipIndicesCurrentlySelected: [],
                   showCheckmark: false,
                 ),
@@ -134,17 +130,16 @@ class ViewRoom extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Foxdale Lodge', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),),
-                        Text('30 rooms', style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600, color: Colors.grey),),
+                        Text('Kasama Towers Lodge', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),),
                       ],
                     ),
                     CircleAvatar(
-                      backgroundImage: AssetImage('assets/roomreservelogo_nolabel.png'),
+                      child: Icon(Icons.home),
                     )
                   ],
                 ),
                 SizedBox(height: 10,),
-                GridView(
+               /* GridView(
                      physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, ),
@@ -195,7 +190,7 @@ class ViewRoom extends StatelessWidget {
                       ),
 
                     ],
-                )
+                )*/
               ],
             ),
           ),

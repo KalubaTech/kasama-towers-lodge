@@ -1,3 +1,4 @@
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
 import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:flutter/material.dart';
@@ -19,47 +20,19 @@ class PageAnchor extends StatefulWidget {
 }
 
 class _PageAnchorState extends State<PageAnchor> {
-  List<TabItem> tabItems = List.of([
-    TabItem(
-      Icons.home,
-      "Home",
-      Karas.action,
-      labelStyle: TextStyle(
-        color: Colors.white,
-        fontSize: 12,
-      ),
-    ),
-    TabItem(
-      Icons.search,
-      "Search",
-      Karas.action,
-      labelStyle: TextStyle(
-        color: Colors.white,
-        fontSize: 12,
-      ),
-    ),
-    TabItem(
-      Icons.layers,
-      "Rooms",
-      Karas.action,
-      labelStyle: TextStyle(
-        color: Colors.white,
-        fontSize: 12,
-      ),
-    ),
-    TabItem(
-      Icons.person,
-      "Account",
-      Karas.action,
-      labelStyle: TextStyle(
-        color: Colors.white,
-        fontSize: 12,
-      ),
-    ),
+
+
+  List<IconData> iconList = List.of([
+    Icons.home,
+    Icons.search,
+    Icons.layers,
+    Icons.person,
   ]);
 
   CircularBottomNavigationController _controller = CircularBottomNavigationController(0);
   PageController _pageController = PageController();
+
+  int _bottomNavIndex = 0;
 
   @override
   void initState() {
@@ -73,19 +46,18 @@ class _PageAnchorState extends State<PageAnchor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CircularBottomNavigation(
-        tabItems,
-        barBackgroundColor: Karas.primary,
-        iconsSize: 24,
-        circleSize: 50,
-        controller: _controller,
-        selectedCallback: (index) {
-          _pageController.animateToPage(
-            index!,
-            duration: Duration(milliseconds: 300),
-            curve: Curves.easeIn,
-          );
-        },
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {  },
+        child: Icon(Icons.access_time_filled),
+      ),
+      bottomNavigationBar: AnimatedBottomNavigationBar(
+        icons: iconList,
+        activeIndex: _bottomNavIndex,
+        gapLocation: GapLocation.center,
+        notchSmoothness: NotchSmoothness.defaultEdge,
+        onTap: (index) => setState(() => _bottomNavIndex = index),
+        //other params
       ),
       drawer: Container(
         width: MediaQuery.of(context).size.width - 60,

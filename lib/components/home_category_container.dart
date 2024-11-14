@@ -4,14 +4,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kasama_towers_lodge/rooms/view_room.dart';
 import 'package:kasama_towers_lodge/utils/colors.dart';
 
+import '../models/room_model.dart';
+
 
 class HomeCategoryContainer extends StatelessWidget {
-  const HomeCategoryContainer({super.key});
+  RoomModel room;
+  HomeCategoryContainer(this.room);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ()=>Get.to(()=>ViewRoom()),
+      onTap: ()=>Get.to(()=>ViewRoom(room)),
       child: Container(
         width: 80,
         decoration: BoxDecoration(
@@ -19,7 +22,7 @@ class HomeCategoryContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           image: DecorationImage(
                fit: BoxFit.cover,
-              image: AssetImage('assets/lodge1.jpg')
+              image: AssetImage('assets/room.jpg')
           )
         ),
         child: Container(
@@ -29,14 +32,9 @@ class HomeCategoryContainer extends StatelessWidget {
           ),
           child: Column(
             children: [
-              CircleAvatar(
-                child: Icon(Icons.home_filled, color: Karas.primary,),
-              ),
+
               Spacer(),
-              Text('30', style: GoogleFonts.agbalumo(fontSize: 20, color: Colors.white),),
-              Text('Rooms', style: GoogleFonts.agbalumo(fontSize: 10, color: Colors.white),),
-              SizedBox(height: 4,),
-              Text('Foxdale Lodge', style: TextStyle(fontSize: 11, color: Colors.white), overflow: TextOverflow.ellipsis,),
+              Text('${room.name}', style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold), overflow: TextOverflow.ellipsis,),
             ],
           ),
         ),
