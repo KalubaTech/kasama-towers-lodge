@@ -34,7 +34,7 @@ class Dashboard extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 40, horizontal: 16),
           child: Column(
             children: [
-              SizedBox(height: 80,),
+              SizedBox(height: 50,),
               SearchMock()
             ],
           ),
