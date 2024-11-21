@@ -3,13 +3,16 @@ import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
 import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kasama_towers_lodge/components/kalubtn.dart';
 import 'package:kasama_towers_lodge/utils/colors.dart';
 import 'package:kasama_towers_lodge/views/dashboard/dashboard.dart';
 import 'package:kasama_towers_lodge/views/discover/rooms.dart';
 import 'package:kasama_towers_lodge/views/profile/profile.dart';
 import 'package:kasama_towers_lodge/views/search/search.dart';
-
+import 'package:get/get.dart';
+import 'package:kasama_towers_lodge/views/signin/sign_in.dart';
 import '../components/drawer_tile.dart';
+import '../controllers/user_controller.dart';
 
 
 class PageAnchor extends StatefulWidget {
@@ -33,6 +36,8 @@ class _PageAnchorState extends State<PageAnchor> {
   PageController _pageController = PageController();
 
   int _bottomNavIndex = 0;
+
+  UserController _userController = Get.find();
 
   @override
   void initState() {
@@ -90,11 +95,11 @@ class _PageAnchorState extends State<PageAnchor> {
                   ),
                   SizedBox(height: 20),
                   Text(
-                    'Kaluba Chakanga',
+                    '${_userController.user.first.fullname}',
                     style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                   Text(
-                    'kalubachakanga@gmail.com',
+                    '${_userController.user.first.email}',
                     style: TextStyle(color: Colors.grey, fontSize: 10),
                   ),
                 ],
@@ -118,6 +123,22 @@ class _PageAnchorState extends State<PageAnchor> {
 
                       },
                     ),
+                    Spacer(),
+                    Divider(
+                    ),
+                    SizedBox(height: 10,),
+                    Row(
+                      children: [
+                        SizedBox(width: 10,),
+                        Kalubtn(
+                          width: 100,
+                            label: 'Logout', onclick: (){
+                          Get.offAll(()=>SignIn());
+                        }),
+                      ],
+                    ),
+                    SizedBox(height: 20,)
+
                   ],
                 ),
               ),

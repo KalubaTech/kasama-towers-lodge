@@ -4,13 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kasama_towers_lodge/components/home_category_container.dart';
 import 'package:kasama_towers_lodge/components/section_container.dart';
+import 'package:kasama_towers_lodge/controllers/user_controller.dart';
 import 'package:kasama_towers_lodge/models/room_model.dart';
 import 'package:kasama_towers_lodge/utils/colors.dart';
-
+import 'package:get/get.dart';
 import '../../components/search_mock.dart';
 
 class Dashboard extends StatelessWidget {
   Dashboard({super.key});
+
+  UserController _userController = Get.find();
 
   @override
   Widget build(BuildContext context) {

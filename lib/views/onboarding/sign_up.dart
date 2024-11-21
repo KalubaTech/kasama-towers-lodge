@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kasama_towers_lodge/helpers/methods.dart';
+import 'package:kasama_towers_lodge/views/dashboard/dashboard.dart';
+import 'package:kasama_towers_lodge/views/page_anchor.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:kasama_towers_lodge/components/kalubtn.dart';
 import 'package:kasama_towers_lodge/components/kalutext.dart';
@@ -51,7 +54,7 @@ class SignUp extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 30),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                 decoration: BoxDecoration(
                   color: Karas.background,
                   borderRadius: BorderRadius.only(topRight: Radius.circular(40), topLeft: Radius.circular(40)),
@@ -110,7 +113,7 @@ class SignUp extends StatelessWidget {
                             Container(
                               width: 40,
                               child: LoadingIndicator(
-                                  indicatorType: Indicator.ballRotate, /// Required, The loading type of the widget
+                                  indicatorType: Indicator.ballBeat, /// Required, The loading type of the widget
                                   colors: [Karas.primary, Karas.action, Colors.green],       /// Optional, The color collections
                                   strokeWidth: 2,                     /// Optional, The stroke of the line, only applicable to widget which contains line
                                   backgroundColor:Colors.transparent,      /// Optional, Background of the widget
@@ -121,8 +124,16 @@ class SignUp extends StatelessWidget {
                               label: 'Sign Up',
                               height: 45,
                               borderRadius: 40,
-                              onclick: (){
-                                isLoading.value = true;
+                              onclick: ()async{
+                                if(!_emailController.isBlank! ||  !_passwordController.isBlank! || _fullnameController.text.isNotEmpty){
+                                  isLoading.value = true;
+                                  await Methods().registerUser(_passwordController.text, _emailController.text, _fullnameController.text, _phoneController.text);
+                                  isLoading.value = false;
+
+                                  Get.offAll(()=>PageAnchor());
+                                }else{
+
+                                }
                               },
                             ),
                           ),

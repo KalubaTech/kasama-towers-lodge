@@ -24,6 +24,8 @@ class ViewRoom extends StatelessWidget {
  PageController _controller = PageController();
  TextEditingController _phoneNumberController = TextEditingController();
 
+  var nights = 1.obs;
+
   @override
   Widget build(BuildContext context) {
     return DraggableHome(
@@ -215,6 +217,7 @@ class ViewRoom extends StatelessWidget {
           ),
           child: Row(
             children: [
+              
               Expanded(
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 10),
@@ -312,12 +315,112 @@ class ViewRoom extends StatelessWidget {
                           )
                         ); 
                       },
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      child: Row(
                         children: [
-                          Text('18 - 21 Oct - 3 nights', style: TextStyle(fontSize: 10, color: Colors.white70),),
-                          Text('K1,250', style: GoogleFonts.alata(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white
-                          ),),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [Obx(()=> Text('${nights.value} night(s)', style: TextStyle(fontSize: 10, color: Colors.white70),)),
+                              Obx(
+                                  ()=> Text('K${nights * int.parse(room.price)}', style: GoogleFonts.alata(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white
+                                ),),
+                              ),
+                            ],
+                          ),
+                          IconButton(
+                              onPressed: (){
+                                  Get.bottomSheet(
+                                      Container(
+                                        height: MediaQuery.of(context).size.width-40,
+                                        margin: EdgeInsets.all(20),
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.circular(40),
+                                            boxShadow: [BoxShadow(color: Colors.black54, spreadRadius: 1, blurRadius: 1)]
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+                                          child: Column(
+                                            children: [
+                                              TimelineCalendar(
+                                                calendarType: CalendarType.GREGORIAN,
+                                                calendarLanguage: "en",
+                                                calendarOptions: CalendarOptions(
+                                                  viewType: ViewType.DAILY,
+                                                  toggleViewType: true,
+                                                  headerMonthElevation: 10,
+                                                  headerMonthShadowColor: Colors.black26,
+                                                  headerMonthBackColor: Colors.transparent,
+                                                ),
+                                                dayOptions: DayOptions(
+                                                    compactMode: true,
+                                                    weekDaySelectedColor: Karas.primary,
+                                                    disableDaysBeforeNow: true),
+                                                headerOptions: HeaderOptions(
+                                                    weekDayStringType: WeekDayStringTypes.SHORT,
+                                                    monthStringType: MonthStringTypes.FULL,
+                                                    backgroundColor: Karas.primary,
+                                                    resetDateColor: Colors.white,
+                                                    calendarIconColor: Colors.white,
+                                                    headerTextColor: Colors.white),
+                                                onChangeDateTime: (datetime) {
+                                                  print(datetime.getDate());
+                                                },
+                                              ),
+                                              Expanded(
+                                                  child: Container(
+                                                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                                                    child: Column(
+                                                      children: [
+                                                        Text('Added Days'),
+                                                        Container(
+                                                          height: 60,
+                                                          width: double.infinity,
+                                                          child: ListView(
+                                                            scrollDirection: Axis.horizontal,
+                                                            shrinkWrap: true,
+                                                            children: [
+                                                              Chip(
+                                                                label: Text('20 Aug'),
+                                                                onDeleted: (){},
+                                                                padding: EdgeInsets.symmetric(horizontal: 0),
+                                                                deleteIcon: Icon(Icons.cancel),
+                                                                deleteIconColor: Colors.red,
+                                                              ),
+                                                              SizedBox(width: 10,),
+                                                              Chip(
+                                                                label: Text('20 Aug'),
+                                                                onDeleted: (){},
+                                                                padding: EdgeInsets.symmetric(horizontal: 0),
+                                                                deleteIcon: Icon(Icons.cancel),
+                                                                deleteIconColor: Colors.red,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  )
+                                              ),
+                                              Container(
+                                                padding: EdgeInsets.symmetric(horizontal: 20),
+                                                child: Kalubtn(
+                                                    backgroundColor: Karas.action,
+                                                    width: MediaQuery.of(context).size.width-40,
+                                                    label: 'K2,000 - Done',
+                                                    borderRadius: 40,
+                                                    height: 45,
+                                                    onclick: (){
+                                                      Get.back();
+                                                    }),
+                                              ),
+                                              SizedBox(height: 20,)
+                                            ],
+                                          ),
+                                        ),
+                                      )
+                                  );
+                              }, icon:  Icon(Icons.add, color: Karas.action,)
+                          )
                         ],
                       ),
                     ),
@@ -333,6 +436,7 @@ class ViewRoom extends StatelessWidget {
                   onclick: (){
                     Get.bottomSheet(
                       Container(
+                        height: 200,
                         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -367,7 +471,7 @@ class ViewRoom extends StatelessWidget {
                                             Row(
                                               crossAxisAlignment: CrossAxisAlignment.end,
                                               children: [
-                                                Text('K2,500', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                                                Obx(()=> Text('K${nights * int.parse(room.price)}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
                                                 SizedBox(width: 6,),
                                                 Container(
                                                     padding: EdgeInsets.symmetric(horizontal: 6, vertical: 1),
@@ -375,16 +479,10 @@ class ViewRoom extends StatelessWidget {
                                                       color: Colors.green,
                                                       borderRadius: BorderRadius.circular(10)
                                                     ),
-                                                    child: Text('3 nights', style: TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.w400),)),
+                                                    child: Obx(()=> Text('${nights} nights', style: TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.w400),))),
                                               ],
                                             ),
-                                            SizedBox(height: 10,),
-                                            Kalutext(
-                                                borderRadius: BorderRadius.circular(40),
-                                                 labelText: 'Phone Number',
-                                                 hintText: 'eg 097/096/095',
-                                                controller: _phoneNumberController
-                                            ),
+
                                           ],
                                         ),
                                       ),

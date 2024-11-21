@@ -5,10 +5,13 @@ import 'package:kasama_towers_lodge/utils/colors.dart';
 import 'package:kasama_towers_lodge/views/page_anchor.dart';
 import 'package:kasama_towers_lodge/views/signin/sign_in.dart';
 
+import 'controllers/user_controller.dart';
+
 
 void main() async{
   await WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  Get.put(UserController());
   runApp(const MyApp());
 }
 
@@ -26,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Karas.primary),
         useMaterial3: true,
       ),
-      home: PageAnchor() //SignIn()
+      home: SignIn() //SignIn()
     );
   }
 }
