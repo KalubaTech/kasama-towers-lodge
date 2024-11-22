@@ -13,7 +13,7 @@ void main() async{
   await WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   Get.put(UserController());
-  Get.lazyPut(()=>RoomsController());
+  Get.put(()=>RoomsController());
   runApp(const MyApp());
 }
 
