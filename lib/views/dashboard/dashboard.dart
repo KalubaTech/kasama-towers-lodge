@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kasama_towers_lodge/components/home_category_container.dart';
 import 'package:kasama_towers_lodge/components/section_container.dart';
+import 'package:kasama_towers_lodge/controllers/rooms_controllelr.dart';
 import 'package:kasama_towers_lodge/controllers/user_controller.dart';
 import 'package:kasama_towers_lodge/models/room_model.dart';
 import 'package:kasama_towers_lodge/utils/colors.dart';
@@ -14,6 +15,7 @@ class Dashboard extends StatelessWidget {
   Dashboard({super.key});
 
   UserController _userController = Get.find();
+  RoomsController _roomsController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +66,16 @@ class Dashboard extends StatelessWidget {
                     child: StreamBuilder(
                       stream: FirebaseFirestore.instance.collection('rooms').snapshots(),
                       builder: (context,s) {
-                        return s.hasData && s.data!.docs.isNotEmpty ? GridView(
+                        if (s.hasData && s.data!.docs.isNotEmpty) {
+                          _roomsController.rooms.value = s.data!.docs.map((room)=>RoomModel(
+                              name: room.get('name'),
+                              price: room.get('price'),
+                              id: room.id,
+                              amenities: room.get('amenities'),
+                              isBooked: room.get('isBooked')
+                          )).toList();
+                          _roomsController.update();
+                          return GridView(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -73,9 +84,19 @@ class Dashboard extends StatelessWidget {
                             mainAxisSpacing: 10
                           ),
                           children: [
-                            ...s.data!.docs.map((room)=>HomeCategoryContainer(RoomModel(name: room.get('name'), price: room.get('price'), id: room.id, amenities: room.get('amenities'))))
+                            ...s.data!.docs.map((room)=>HomeCategoryContainer(RoomModel(
+                                name: room.get('name'),
+                                price: room.get('price'),
+                                id: room.id,
+                                amenities: room.get('amenities'),
+                                isBooked: room.get('isBooked')
+                            )
+                            ))
                           ],
-                        ) : Container();
+                        );
+                        } else {
+                          return Container();
+                        }
                       }
                     ),
                   ),

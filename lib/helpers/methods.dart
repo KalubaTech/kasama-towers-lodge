@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kasama_towers_lodge/controllers/user_controller.dart';
 import 'package:get/get.dart';
+import 'package:kasama_towers_lodge/models/room_model.dart';
 import 'package:kasama_towers_lodge/models/user_model.dart';
 
 class Methods {
@@ -41,6 +42,21 @@ class Methods {
     }else{
       return false;
     }
+  }
+
+  Future<bool>book(RoomModel room, UserModel user, totalPrice, numNights, reservedDates)async{
+    var data = {
+      'roomId':room.id,
+      'totalPrice': totalPrice,
+      'numberOfNights': numNights,
+      'reservedDates': reservedDates,
+      'user': user.uid,
+      'dateBooked': '${DateTime.now()}',
+      'status':'pending'
+    };
+    var booking = await _fs.collection('bookings').add(data);
+
+    return true;
   }
 
 }

@@ -8,6 +8,7 @@ import 'package:kasama_towers_lodge/utils/colors.dart';
 import 'package:kasama_towers_lodge/views/dashboard/dashboard.dart';
 import 'package:kasama_towers_lodge/views/discover/rooms.dart';
 import 'package:kasama_towers_lodge/views/profile/profile.dart';
+import 'package:kasama_towers_lodge/views/reservation/reserved.dart';
 import 'package:kasama_towers_lodge/views/search/search.dart';
 import 'package:get/get.dart';
 import 'package:kasama_towers_lodge/views/signin/sign_in.dart';
@@ -120,7 +121,7 @@ class _PageAnchorState extends State<PageAnchor> {
                       title: 'Reserved',
                       icon: Icons.warehouse,
                       onclick: (){
-
+                        Get.to(()=>Reserved());
                       },
                     ),
                     Spacer(),

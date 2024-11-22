@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kasama_towers_lodge/rooms/view_room.dart';
 import 'package:kasama_towers_lodge/utils/colors.dart';
 
 import '../models/room_model.dart';
+import '../views/rooms/view_room.dart';
 
 
 class HomeCategoryContainer extends StatelessWidget {
@@ -32,7 +32,21 @@ class HomeCategoryContainer extends StatelessWidget {
           ),
           child: Column(
             children: [
-
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  room.isBooked?Icon(Icons.book, color: Colors.deepOrange, size: 30,):Container(),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 1),
+                    decoration: BoxDecoration(
+                      color: Karas.primary,
+                      borderRadius: BorderRadius.circular(20)
+                    ),
+                    child: Text('K${room.price}', style: TextStyle(fontSize: 12, color: Colors.white),),
+                  )
+                ],
+              ),
               Spacer(),
               Text('${room.name}', style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold), overflow: TextOverflow.ellipsis,),
             ],
