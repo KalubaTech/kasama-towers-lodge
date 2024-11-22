@@ -152,11 +152,14 @@ class _PageAnchorState extends State<PageAnchor> {
         controller: _pageController,
         onPageChanged: (index) {
           _controller.value = index;
+          setState(() {
+            _bottomNavIndex = index;
+          });
         },
         children: [
           Dashboard(),
           Search(),
-          Rooms(),
+          Reserved(),
           Profile(),
         ],
       ),
