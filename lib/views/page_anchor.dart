@@ -60,9 +60,10 @@ class _PageAnchorState extends State<PageAnchor> {
       bottomNavigationBar: AnimatedBottomNavigationBar(
         icons: iconList,
         activeIndex: _bottomNavIndex,
+        activeColor: Karas.action,
         gapLocation: GapLocation.center,
         notchSmoothness: NotchSmoothness.defaultEdge,
-        onTap: (index) => setState(() => _bottomNavIndex = index),
+        onTap: (index) => setState(() => (_bottomNavIndex = index, _pageController.animateToPage(index, duration: Duration(seconds: 1), curve: Curves.ease))),
         //other params
       ),
       drawer: Container(

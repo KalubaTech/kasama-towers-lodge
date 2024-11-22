@@ -27,10 +27,14 @@ class _SearchState extends State<Search> {
           children: [
             Container(
               child: SearchChoices.multiple(
-                items: List.generate(20, (index)=>DropdownMenuItem(child: Text('Kaluba $index'))),
+                items: [
+                  DropdownMenuItem(child: Text('Booked')),
+                  DropdownMenuItem(child: Text('Not Booked')),
+                  DropdownMenuItem(child: Text('Self Contained')),
+                ],
                 //value: _searchedValue,
-                hint: "Select one",
-                searchHint: "Select one",
+                hint: "Search Rooms",
+                searchHint: "Search Rooms",
                 onChanged: (value) {
                   setState(() {
                     _searchedValue = value;
