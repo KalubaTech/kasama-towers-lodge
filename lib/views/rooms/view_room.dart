@@ -42,8 +42,8 @@ class _ViewRoomState extends State<ViewRoom> {
         StatefulBuilder(
           builder: (context, state) {
             return Container(
-              height: MediaQuery.of(context).size.width-40,
-              margin: EdgeInsets.all(20),
+              height: 350,
+              margin: EdgeInsets.all(10),
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(40),
@@ -58,7 +58,7 @@ class _ViewRoomState extends State<ViewRoom> {
                       calendarLanguage: "en",
                       calendarOptions: CalendarOptions(
                         viewType: ViewType.DAILY,
-                        toggleViewType: true,
+                        toggleViewType: false,
                         headerMonthElevation: 10,
                         headerMonthShadowColor: Colors.black26,
                         headerMonthBackColor: Colors.transparent,
