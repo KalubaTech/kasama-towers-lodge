@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:kasama_towers_lodge/components/kalubtn.dart';
 import 'package:kasama_towers_lodge/components/kalutext.dart';
@@ -110,12 +111,14 @@ class SignIn extends StatelessWidget {
                               onclick: ()async{
                                   if(!_emailController.isBlank! ||  !_passwordController.isBlank!) {
                                     isLoading.value = true;
-                                    await Methods().loginUser(
+
+                                    var isLoggedin = await Methods().loginUser(
                                         _emailController.text,
                                         _passwordController.text);
+
                                     isLoading.value = false;
 
-                                    Get.offAll(() => PageAnchor());
+                                    isLoggedin?Get.offAll(() => PageAnchor()):Fluttertoast.showToast(msg: 'Invalid Email Or Password');
                                   }
                               },
                             ),

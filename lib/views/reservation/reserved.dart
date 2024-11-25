@@ -90,7 +90,7 @@ class Reserved extends StatelessWidget {
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        Container(padding: EdgeInsets.symmetric(horizontal: 20),child: Text('Dates (Nights)', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),)),
+                                        Container(padding: EdgeInsets.symmetric(horizontal: 20),child: Text('Dates (${booking.nights.length} Nights)', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),)),
                                         Container(
                                           height: 60,
                                           width: double.infinity,
